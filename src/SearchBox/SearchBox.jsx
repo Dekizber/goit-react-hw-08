@@ -1,6 +1,9 @@
+import clsx from "clsx";
+import s from "./SearchBox.module.css";
+
 const SearchBox = ({ searchInput, setSearchInput }) => {
   return (
-    <div>
+    <div className={clsx(s.container)}>
       <p>Find contacts by name</p>
       <input
         type="text"

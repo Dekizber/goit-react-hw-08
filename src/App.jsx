@@ -3,6 +3,8 @@ import ContactForm from "./ContactForm/ContactForm";
 import ContactList from "./ContactList/ContactList";
 import SearchBox from "./SearchBox/SearchBox";
 import { nanoid } from "nanoid";
+import s from "./App.module.css";
+import clsx from "clsx";
 
 const App = () => {
   const initialArr = [
@@ -34,7 +36,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>Phonebook</h1>
+      <h1 className={clsx(s.title)}>Phonebook</h1>
       <ContactForm
         contactsArr={contactsArr}
         handleAddContact={handleAddContact}

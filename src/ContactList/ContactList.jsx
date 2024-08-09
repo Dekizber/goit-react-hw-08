@@ -1,8 +1,9 @@
 import Contact from "../Contact/Contact";
-
+import clsx from "clsx";
+import s from "./ContactList.module.css";
 const ContactList = ({ contacts, handleDeleteContact }) => {
   return (
-    <ul>
+    <ul className={clsx(s.listContact)}>
       {contacts.map((contact) => {
         return (
           <li key={contact.id}>
