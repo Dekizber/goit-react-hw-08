@@ -2,6 +2,7 @@ import { FaUserAstronaut } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import clsx from "clsx";
 import s from "./Contact.module.css";
+
 const Contact = ({ id, name, number, handleDeleteContact }) => {
   return (
     <div className={clsx(s.contCard)}>

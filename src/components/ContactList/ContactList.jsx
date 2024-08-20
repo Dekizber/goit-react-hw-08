@@ -1,7 +1,14 @@
 import Contact from "../Contact/Contact";
 import clsx from "clsx";
 import s from "./ContactList.module.css";
-const ContactList = ({ contacts, handleDeleteContact }) => {
+import { useDispatch, useSelector } from "react-redux";
+import { selectContacts, selectFilter } from "../../redux/selectors";
+const ContactList = ({ handleDeleteContact }) => {
+  const contacts = useSelector(selectContacts);
+  const dispatch = useDispatch();
+  const filter = useSelector(selectFilter);
+  const filteredData = contacts.filter;
+
   return (
     <ul className={clsx(s.listContact)}>
       {contacts.map((contact) => {
