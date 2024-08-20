@@ -8,7 +8,6 @@ const persistConfigContacts = {
   key: 'contacts',
   version: 1,
   storage,
-  whitelist: ['contacts'],
 };
 
 export const store = configureStore({

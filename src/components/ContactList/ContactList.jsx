@@ -1,24 +1,25 @@
-import Contact from "../Contact/Contact";
+import { useSelector } from "react-redux";
+import { selectContacts, selectNameFilter } from "../../redux/constants";
 import clsx from "clsx";
+import Contact from "../Contact/Contact";
 import s from "./ContactList.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { selectContacts, selectFilter } from "../../redux/selectors";
-const ContactList = ({ handleDeleteContact }) => {
+
+const ContactList = () => {
   const contacts = useSelector(selectContacts);
-  const dispatch = useDispatch();
-  const filter = useSelector(selectFilter);
-  const filteredData = contacts.filter;
+  const filter = useSelector(selectNameFilter);
+  const filteredData = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
 
   return (
     <ul className={clsx(s.listContact)}>
-      {contacts.map((contact) => {
+      {filteredData.map((contact) => {
         return (
           <li key={contact.id}>
             <Contact
               id={contact.id}
               name={contact.name}
               number={contact.number}
-              handleDeleteContact={handleDeleteContact}
             />
           </li>
         );
