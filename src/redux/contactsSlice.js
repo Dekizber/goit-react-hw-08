@@ -25,15 +25,15 @@ const slice = createSlice({
       .addMatcher(
         isAnyOf(addContactsThunk.pending, fetchContactsThunk.pending, deleteContactsThunk.pending),
         state => {
-          state.isError = false;
-          state.isLoading = true;
+          state.error = false;
+          state.loading = true;
         }
       )
 
       .addMatcher(
         isAnyOf(addContactsThunk.fulfilled, fetchContactsThunk.fulfilled, deleteContactsThunk.fulfilled),
         state => {
-          state.isLoading = false;
+          state.loading = false;
         }
       );
   },

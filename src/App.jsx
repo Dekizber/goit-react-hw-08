@@ -18,6 +18,9 @@ const App = () => {
   useEffect(() => {
     dispatch(fetchContactsThunk());
   }, [dispatch]);
+
+  console.log("isLoading:", isLoading);
+
   return (
     <div>
       <h1 className={clsx(s.title)}>Phonebook</h1>
@@ -25,7 +28,6 @@ const App = () => {
       <SearchBox />
       {isLoading && (
         <div className={s.loader}>
-          <p>Loading....</p>
           <PacmanLoader color="#ffd600" />
         </div>
       )}
