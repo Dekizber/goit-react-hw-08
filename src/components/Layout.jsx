@@ -1,7 +1,15 @@
-import React from "react";
+import { Suspense } from "react";
 
-const Layout = () => {
-  return <div>Layout</div>;
+import { AppBar } from "./AppBar/AppBar";
+import { PacmanLoader } from "react-spinners";
+
+export const Layout = ({ children }) => {
+  return (
+    <div>
+      <AppBar />
+      <Suspense fallback={<PacmanLoader color="#ffd600" />}>
+        {children}
+      </Suspense>
+    </div>
+  );
 };
-
-export default Layout;

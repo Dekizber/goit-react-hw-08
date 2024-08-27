@@ -1,43 +1,56 @@
-import clsx from "clsx";
-import s from "./App.module.css";
-import ContactForm from "./components/ContactForm/ContactForm";
-import ContactList from "./components/ContactList/ContactList";
-import SearchBox from "./components/SearchBox/SearchBox";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { fetchContactsThunk } from "./redux/contacts/operations";
-import { selectIsError, selectIsLoading } from "./redux/contacts/selectors";
+import { lazy, useEffect } from "react";
 import { PacmanLoader } from "react-spinners";
+import { selectIsRefreshing } from "./redux/auth/selectors";
+import { refreshUserThunk } from "./redux/auth/operations";
+import { Layout } from "./components/Layout";
+import { Route, Routes } from "react-router-dom";
+import { RestrictedRoute } from "./components/RestrictedRoute";
+import { PrivateRoute } from "./components/PrivateRoute";
 
 const App = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
-  const isError = useSelector(selectIsError);
+  const { isRefreshing } = useSelector(selectIsRefreshing);
+
+  const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+  const RegistrationPage = lazy(() =>
+    import("./pages/RegistrationPage/RegistrationPage")
+  );
+  const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
+  const ContactsPage = lazy(() => import("./pages/ContactsPage/ContactsPage"));
 
   useEffect(() => {
-    dispatch(fetchContactsThunk());
+    dispatch(refreshUserThunk());
   }, [dispatch]);
-
-  return (
-    <div>
-      <h1 className={clsx(s.title)}>Phonebook</h1>
-      <ContactForm />
-      <SearchBox />
-      {isLoading && (
-        <div className={s.loader}>
-          <PacmanLoader color="#ffd600" />
-        </div>
-      )}
-      {isError ? (
-        <p className={s.error}>
-          Sorry, may be an error!
-          <br />
-          Please try again later!
-        </p>
-      ) : (
-        <ContactList />
-      )}
-    </div>
+  return isRefreshing ? (
+    <PacmanLoader color="#ffd600" />
+  ) : (
+    <Layout>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoute
+              redirectTo="/contacts"
+              component={<RegistrationPage />}
+            />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />
+          }
+        />
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+          }
+        />
+      </Routes>
+    </Layout>
   );
 };
 
