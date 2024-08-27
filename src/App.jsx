@@ -5,21 +5,18 @@ import ContactList from "./components/ContactList/ContactList";
 import SearchBox from "./components/SearchBox/SearchBox";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fetchContactsThunk } from "./redux/contactsOps";
-import { selectIsError, selectIsLoading } from "./redux/selectors";
+import { fetchContactsThunk } from "./redux/contacts/operations";
+import { selectIsError, selectIsLoading } from "./redux/contacts/selectors";
 import { PacmanLoader } from "react-spinners";
 
 const App = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const isError = useSelector(selectIsError);
-  console.log(isError);
 
   useEffect(() => {
     dispatch(fetchContactsThunk());
   }, [dispatch]);
-
-  console.log("isLoading:", isLoading);
 
   return (
     <div>
