@@ -6,18 +6,18 @@ import { authReducer } from './auth/slice';
 import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import { filterSlice } from './filters/filtersSlice';
 
-const persistConfig = {
+const authPersistConfig = {
   key: 'root',
   version: 1,
   storage,
-  whitelist: ['token', 'user', 'isLoggedIn'],
+  whitelist: ['token'],
 };
 
 export const store = configureStore({
   reducer: {
     contacts: contactsReducer,
     filter: filterSlice,
-    auth: persistReducer(persistConfig, authReducer),
+    auth: persistReducer(authPersistConfig, authReducer),
   }, middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
