@@ -1,0 +1,31 @@
+.form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%; /* Додаємо ширину для батьківського контейнера */
+}
+
+.label {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 8px;
+  width: 100%; /* Забезпечуємо однакову ширину для всіх елементів */
+}
+
+.authBtn {
+  font-weight: bold;
+  font-size: large;
+  color: azure;
+  width: 100%; /* Зробимо кнопку такої ж ширини, як і поля вводу */
+}
+
+.field {
+  font-size: 20px;
+  width: 100%; /* Поля вводу займають всю доступну ширину */
+}
+
+form {
+  max-width: 400px; /* Встановлюємо максимальну ширину для форми */
+  width: 100%; /* Форма займає всю доступну ширину */
+}

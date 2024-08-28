@@ -12,7 +12,7 @@ export const UserMenu = () => {
     <div className={s.userMenu}>
       <p>Welcome, {name}</p>
       <button
-        className={s.signUp}
+        className={s.signUpBtn}
         type="button"
         onClick={() => {
           dispatch(clearItems());

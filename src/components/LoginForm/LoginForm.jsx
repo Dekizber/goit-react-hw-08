@@ -28,15 +28,16 @@ const LoginForm = () => {
         onSubmit={handelSubmit}
         validationSchema={loginSchema}
       >
-        <Form>
+        <Form className={s.form}>
           <label className={s.label}>
             Email
-            <Field type="email" name="email" />
+            <Field className={s.field} type="email" name="email" />
             <ErrorMessage name="email" component="span" />
           </label>
           <label className={s.label}>
             Password
             <Field
+              className={s.field}
               type="password"
               name="password"
               autoComplete="true"
@@ -44,8 +45,8 @@ const LoginForm = () => {
             />
             <ErrorMessage name="password" component="span" />
           </label>
-          <button className={s.oauthButton} type="submit">
-            LogIn
+          <button className={s.authBtn} type="submit">
+            Log In
           </button>
         </Form>
       </Formik>

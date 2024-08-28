@@ -40,17 +40,28 @@ const RegistrationForm = () => {
           <Form>
             <label className={s.label}>
               Name
-              <Field type="text" name="name" placeholder="name" />
+              <Field
+                className={s.field}
+                type="text"
+                name="name"
+                placeholder="name"
+              />
               <ErrorMessage name="name" component="span" />
             </label>
             <label className={s.label}>
               Email
-              <Field type="email" name="email" placeholder="email" />
+              <Field
+                className={s.field}
+                type="email"
+                name="email"
+                placeholder="email"
+              />
               <ErrorMessage name="email" component="span" />
             </label>
             <label className={s.label}>
               Password
               <Field
+                className={s.field}
                 type="password"
                 name="password"
                 autoComplete="true"
@@ -59,8 +70,8 @@ const RegistrationForm = () => {
               />
               <ErrorMessage name="password" component="span" />
             </label>
-            <button className={s.oauthButton} type="submit">
-              SingUp
+            <button className={s.authBtn} type="submit">
+              Sing Up
             </button>
           </Form>
         </Formik>
